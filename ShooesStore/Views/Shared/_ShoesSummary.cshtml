@@ -1,0 +1,36 @@
+﻿@model ShooesStore.Models.Shoes
+
+<div class="well">
+    <div class=" row">
+        <div class="col-xs-10">
+            <div><img src="~/@Model.ImgPath" width="200" height="200" alt="lorem"> </div>
+            <h3>
+                <strong> @Model.NameShoes</strong>
+            </h3>
+            <h4>
+                <strong><ins>@Model.Manufacturer</ins> </strong>
+            </h4>
+            <span class="lead">
+                @Model.Discription
+            </span>
+        </div>
+        <div class="col-xs-2">
+            <h3>
+                <strong  id="price" class="pull-right label label-primary">
+                @Model.Price.ToString("# руб")
+                </strong>
+            </h3>
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                <div  class="pull-right">
+                    @Html.HiddenFor(x => x.ShoesId)
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+                </div>
+            }
+
+        </div>
+        
+       
+    </div>
+</div>

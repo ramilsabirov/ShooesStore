@@ -1,0 +1,51 @@
+﻿@model ShooesStore.Models.Shoes
+
+@{
+    ViewBag.Title = "Админ панель: редактирования товара";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading" > <h3>Редактирование товара "@Model.NameShoes"</h3></div>
+
+    @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(m =>m.ShoesId)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                if (property.PropertyName != "ShoesId" && property.PropertyName != "ImgPath")
+                {
+                    <div class="form-group">
+                        <label>@(property.DisplayName ??property.PropertyName)</label>
+                        @if (property.PropertyName == "Description")
+                        {
+	                        @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 10 })
+                        }
+                        @if (property.PropertyName == "ShoesType")
+                        {
+                            @Html.DropDownListFor(model => model.ShoesType, ViewBag.shoesType as SelectList)
+                        }
+                        else
+                        {
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                        }
+                        @Html.ValidationMessage(property.PropertyName)
+                    </div>
+                }
+            }
+            
+        </div>
+        
+        
+     
+    <div class="panel-footer">
+        <input type="file" name="upload" /><br>
+        <input type="submit" value="Сохранить" class="btn btn-primary"/>
+
+        @Html.ActionLink("Отмена", "Index",null,new { @class="btn btn-default"})
+    </div>
+    }
+  
+
+</div>

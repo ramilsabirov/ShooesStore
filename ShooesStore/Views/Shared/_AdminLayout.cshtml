@@ -1,0 +1,38 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <title>Редактирование товара</title>
+</head>
+<body>
+    <div>
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["message"]
+            </div>
+        }
+        @if (TempData["messageCreate"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["messageCreate"]
+            </div>
+        }
+        @if (TempData["messageDelete"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["messageDelete"]
+            </div>
+        }
+        @RenderBody()
+    </div>
+</body>
+</html>

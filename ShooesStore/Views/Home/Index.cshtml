@@ -1,0 +1,16 @@
+﻿@using ShooesStore.Models
+@model  ShoesListViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@foreach (var shoes in Model.Shoess)
+{
+    @Html.Partial("_ShoesSummary",shoes);
+}
+
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x, shoesType = Model.CurrentShoesType}))
+
+</div>

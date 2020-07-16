@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    
+    <title>@ViewBag.Title – Магазин обуви</title>
+    <style>
+        .navbar-right {
+            float: right !important;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+   <div class="navbar navbar-inverse " role="navigation">
+       <div class="navbar-brand" >Магазин продажи обуви</div>
+       <div class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+               <li>@Html.ActionLink("ГЛАВНАЯ", "Index", "Home")</li>
+               <li>@Html.ActionLink("О магазине", "About", "Home")</li>
+               <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
+               <li>@Html.ActionLink("Панель администратора", "Index", "Admin")</li>
+               @if (User.IsInRole("admin"))
+               {
+               }
+
+
+
+           </ul>
+          
+                @Html.Action("Summary", "Cart")
+                @Html.Partial("_LogView")
+        
+       </div>
+       
+   </div>
+    <div class="row panel">
+        <div  class="col-xs-3">
+          @Html.Action("Menu", "Nav")
+        </div>
+        <div  class="col-xs-8">
+             @RenderBody()
+        </div>      
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/custom.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+   
+</html>
